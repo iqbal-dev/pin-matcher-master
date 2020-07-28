@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="pin-generator half-width">
-                    <input class="form-control" id="input" type="text" value="">
+                    <input class="form-control" id="generateInput" type="text" value="">
                     <button class="generate-btn" onclick="buttonGenerate()">Generate Pin</button>
                 </div>
             </div>
@@ -37,78 +37,85 @@
                               <div class="button">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div class="button" id="delete"><</div>
+                                <div class="button" id="deleteButton"><</div>
                                 <div class="button">0</div>
-                                <div class="button" id="clear">C</div>
+                                <div class="button" id="clearButton">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn" id="submit">Submit</button>
-                                <p class="action-left" id="try">3</span> try left</p>
+                                <button type="submit" class="submit-btn" id="userInputSubmit" onclick="userInputSubmit()">Submit</button>
+                                <p class="action-left" id="tryLeft">3</span> try left</p>
                             </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="notify-section">
-            <p class="notify" id="passwordWrong">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="passwordWrong">❌ Pin Didn't Match, Please tryLeft again</p>
             <p class="notify" id="passwordMatched">✅ Pin Matched... Secret door is opening for you</p>
-            <p class="notify" id="disableMessage">❌ Your Account is disbale</p>
+            <p class="notify" id="disableMessage">❌ Pin wrong many times...so now you are blocked!!</p>
+
         </div>
     </div>
 </body>
 
 <script>
-    function buttonGenerate(){
-        let inputValue = document.getElementById('input').value = Math.round(1000+Math.random()*8999);
-        return inputValue
-    }
-    document.getElementById('calcBody').addEventListener('click',function(e){
-        let userValue = document.getElementById('userInput')
-        if(userValue.value.length<4){
-            if(e.target.id!='delete' && e.target.id!='clear' && e.target.id!='submit' && e.target.id != 'try'){
-            userValue.value += e.target.innerText;
+    /********Calculator Body********/
+         document.getElementById('calcBody').addEventListener('click',function(e){
+        let userInputValue = document.getElementById('userInput');
+        if(userInputValue.value.length<4){
+        if(e.target.className == 'button'){
+            if(e.target.id!='deleteButton' && e.target.id!='clearButton' && e.target.id!='userInputSubmit' && e.target.id != 'tryLeft'){
+            userInputValue.value += e.target.innerText;
         }
         }
-        if(e.target.id == 'clear') {
-                userValue.value = ''
+        }
+        if(e.target.id == 'clearButton') {
+                userInputValue.value = '';
             }
-        if(e.target.id =='delete'){
-                userValue.value = userValue.value.slice(0,-1)
+        if(e.target.id =='deleteButton'){
+                userInputValue.value = userInputValue.value.slice(0,-1);
             }
     })
 
-    document.getElementById('submit').addEventListener('click',function(){
-        let inputValue = document.getElementById('input').value;
-        let userValue = document.getElementById('userInput').value;
-        if(inputValue!=0 && userValue!=0){
-            if(inputValue == userValue){
-            document.getElementById('passwordMatched').style.display = 'block'
-            document.getElementById('passwordWrong').style.display = 'none'
+
+    /********ButtonGenerate********/
+    function buttonGenerate(){
+        let inputValue = document.getElementById('generateInput').value = Math.round(1000+Math.random()*8999);
+        return inputValue;
+    }
+
+
+ /********User Input and Submit********/
+    function userInputSubmit(){
+        let generateInputValue = document.getElementById('generateInput').value;
+        let userInputValue = document.getElementById('userInput').value;
+        if(generateInputValue!=0 && userInputValue!=0){
+            if(generateInputValue == userInputValue){
+            document.getElementById('passwordMatched').style.display = 'block';
+            document.getElementById('passwordWrong').style.display = 'none';
         }
         else{
-            document.getElementById('passwordWrong').style.display = 'block'
-            document.getElementById('passwordMatched').style.display = 'none'
-        }
+            document.getElementById('passwordWrong').style.display = 'block';
+            document.getElementById('passwordMatched').style.display = 'none';
+            
         
-        let changeValue = parseInt(document.getElementById('try').innerText)
-        
-        
+        let changeValue = parseInt(document.getElementById('tryLeft').innerText);
         if(changeValue==0){
             
-            document.getElementById('submit').disabled = true
-            document.getElementById('passwordWrong').style.display = 'none'
-            document.getElementById('passwordMatched').style.display = 'none'
-            document.getElementById('disableMessage').style.display = 'block'
+            document.getElementById('userInputSubmit').disabled = true;
+            document.getElementById('passwordWrong').style.display = 'none';
+            document.getElementById('passwordMatched').style.display = 'none';
+            document.getElementById('disableMessage').style.display = 'block';
         }
         else{
             var iterate = changeValue-1;
-        document.getElementById('try').innerText = iterate +' try left';
+        document.getElementById('tryLeft').innerText = iterate +' try left';
         }
-        
+        }
+        document.getElementById('userInput').value = "";
+        }
 
-        document.getElementById('userInput').value = ""
-        }
-    })
+    }
 
 
 

@@ -89,7 +89,7 @@
     function userInputSubmit(){
         let generateInputValue = document.getElementById('generateInput').value;
         let userInputValue = document.getElementById('userInput').value;
-        if(generateInputValue!=0 && userInputValue!=0){
+        if(generateInputValue>=0 && userInputValue>=0){
             if(generateInputValue == userInputValue){
             document.getElementById('passwordMatched').style.display = 'block';
             document.getElementById('passwordWrong').style.display = 'none';

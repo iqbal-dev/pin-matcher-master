@@ -113,6 +113,7 @@
         if(generateInputValue>=0 && userInputValue>=0){
             if(generateInputValue == userInputValue){
                 document.getElementById('passwordMatched').style.display = 'block';
+                document.getElementById('passwordWrong').style.display = 'none';
                 document.getElementById('generateInput').value = ""
         }
 
@@ -120,6 +121,7 @@
     /***********Pin is not matched start********/
         else{
             document.getElementById('passwordWrong').style.display = 'block';
+            document.getElementById('passwordMatched').style.display = 'none';
             
         
             let tryLeft = parseInt(document.getElementById('tryLeft').innerText);
@@ -138,7 +140,8 @@
                 document.getElementById('tryLeft').innerText = tryLeft +' try left';
                 document.getElementById('userInputSubmit').disabled = true;
                 document.getElementById('disableMessage').style.display = 'block';
-            document.getElementById('passwordWrong').style.display = 'none';
+                document.getElementById('passwordWrong').style.display = 'none';
+                document.getElementById('passwordMatched').style.display = 'none';
             }
         /*********** submit is disabled end********/
         }

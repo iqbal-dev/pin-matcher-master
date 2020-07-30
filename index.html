@@ -62,7 +62,7 @@
 
 <script>
 /***********************Calculator Body Event start*****************/
-         document.getElementById('calcBody').addEventListener('click',function(e){
+    document.getElementById('calcBody').addEventListener('click',function(e){
         let userInput = document.getElementById('userInput');
         userInput.style.textAlign = "center";
 
@@ -111,15 +111,15 @@
         let userInputValue = document.getElementById('userInput').value;
     /***********Pin is matched********/
         if(generateInputValue>=0 && userInputValue>=0){
-            if(generateInputValue == userInputValue){
+            if((generateInputValue == "" && userInputValue=="")||generateInputValue == "" ||userInputValue==""){
+            alert('pin is not generated or you do not give the pin')
+            }
+            else if(generateInputValue === userInputValue){
                 document.getElementById('passwordMatched').style.display = 'block';
                 document.getElementById('passwordWrong').style.display = 'none';
                 document.getElementById('generateInput').value = "";
                 document.getElementById('tryLeft').innerText = 3 + ' try left';
         }
-        else if(generateInputValue == ""){
-        alert('pin is not generated')
-    }
 
 
     /***********Pin is not matched start********/

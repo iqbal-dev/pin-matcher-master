@@ -114,7 +114,8 @@
             if(generateInputValue == userInputValue){
                 document.getElementById('passwordMatched').style.display = 'block';
                 document.getElementById('passwordWrong').style.display = 'none';
-                document.getElementById('generateInput').value = ""
+                document.getElementById('generateInput').value = "";
+                document.getElementById('tryLeft').innerText = 3 + ' try left';
         }
         else if(generateInputValue == ""){
         alert('pin is not generated')

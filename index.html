@@ -116,6 +116,9 @@
                 document.getElementById('passwordWrong').style.display = 'none';
                 document.getElementById('generateInput').value = ""
         }
+        else if(generateInputValue == ""){
+        alert('pin is not generated')
+    }
 
 
     /***********Pin is not matched start********/
@@ -151,6 +154,7 @@
     /***********user input is cleared after the matched********/
         document.getElementById('userInput').value = "";
     }
+
 
 }
 

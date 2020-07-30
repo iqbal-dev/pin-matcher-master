@@ -104,12 +104,6 @@ color: #E0B612;
     color: #FF3C5F;
     margin-top: 10px;
 }
-#passwordMatched{
-    display: none;
-}
-#passwordWrong{
-    display: none;
-}
-#disableMessage{
+#passwordMatched,#passwordWrong,#disableMessage{
     display: none;
 }
